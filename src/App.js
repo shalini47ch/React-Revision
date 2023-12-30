@@ -8,7 +8,12 @@ function App() {
   const [data, setData] = useState(null);
   const [print, setPrint] = useState(false);
   //here we have implemented the functionality of hide as well as show using useState
-  const [status,setStatus]=useState(true);//so initially we will want to show the element so we will keep it as true
+  const [status, setStatus] = useState(true); //so initially we will want to show the element so we will keep it as true
+  //here we will create three states one for newname,setName ,tnc and setTnc and interest and setInterest
+
+  const [newname, setName] = useState("");
+  const [tnc, setTnc] = useState(false); //initially tnc are not set
+  const [interest, setInterest] = useState("");
 
   function updateData() {
     updateName("Manisha");
@@ -21,11 +26,17 @@ function App() {
     console.log(e.target.value);
     setData(e.target.value);
   }
+  function getFormData(e) {
+    console.log(newname);
+    console.log(tnc);
+    console.log(interest);
+    e.preventDefault();
+  }
 
   return (
     <div className="App">
       {print ? <h1>{data}</h1> : null}
-      {status?<h1>Hello</h1>:null}
+      {status ? <h1>Hello</h1> : null}
       <User />
       <Customer />
       <button onClick={handleClick}>Click Me</button>
@@ -35,9 +46,29 @@ function App() {
       <Students name={name} age="24" />
       <input type="text" onChange={getData} />
       <button onClick={() => setPrint(true)}>Print Name</button>
-      <button onClick={()=>setStatus(false)}>Hide</button>
-      <button onClick={()=>setStatus(true)}>Show</button>
-      <button onClick={()=>setStatus(!status)}>Toggle</button>
+      <button onClick={() => setStatus(false)}>Hide</button>
+      <button onClick={() => setStatus(true)}>Show</button>
+      <button onClick={() => setStatus(!status)}>Toggle</button>
+      <form onSubmit={getFormData}>
+        <input
+          type="text"
+          placeholder="enter your name"
+          onChange={(e) => setName(e.target.value)}
+        />{" "}
+        <br /> <br />
+        <select onChange={(e) => setInterest(e.target.value)}>
+          <option>Select options</option>
+          <option>Marvel</option>
+          <option>DC</option>
+        </select>{" "}
+        <br />
+        <br />
+        <input type="checkbox" onChange={(e) => setTnc(e.target.checked)} />
+        <span>Accept terms and conditions</span>
+        <br />
+        <br />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }
@@ -51,3 +82,5 @@ export default App;
 
 //Now applying the logic for hide and show to show or hide button content on the basis of button click
 //if we put the opposite of the existing state we can use that to toggle
+
+//e.preventDefault() helps us to prevent automatic submit of our form
