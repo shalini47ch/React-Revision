@@ -2,6 +2,7 @@ import User from "./components/User";
 import Customer from "./components/Customer";
 import { React, useState } from "react";
 import Students from "./components/Students";
+import Login from "./components/Login"
 
 function App() {
   const [name, updateName] = useState("shalini");
@@ -69,6 +70,7 @@ function App() {
         <br />
         <button type="submit">Submit</button>
       </form>
+      <Login/>
     </div>
   );
 }
