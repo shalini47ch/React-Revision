@@ -3,6 +3,7 @@ import Customer from "./components/Customer";
 import { React, useState } from "react";
 import Students from "./components/Students";
 import Login from "./components/Login"
+import NewUser from "./components/Newuser";
 
 function App() {
   const [name, updateName] = useState("shalini");
@@ -32,6 +33,9 @@ function App() {
     console.log(tnc);
     console.log(interest);
     e.preventDefault();
+  }
+  function getInfo(){
+    alert("I will provide the info");
   }
 
   return (
@@ -71,6 +75,7 @@ function App() {
         <button type="submit">Submit</button>
       </form>
       <Login/>
+      <NewUser data={getInfo}/>
     </div>
   );
 }
